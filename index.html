@@ -3,98 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线表索引</title>
+    <title>中天粤工作台</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
         h1 { color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
         .info { color: #666; font-size: 14px; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; margin-bottom: 0; }
-        th { background: #4CAF50; color: white; padding: 12px; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+        th { background: #4CAF50; color: white; padding: 10px 12px; text-align: left; font-size: 14px; }
+        td { padding: 8px 12px; border-bottom: 1px solid #eee; font-size: 14px; }
         tr:hover { background: #f9f9f9; }
         a { color: #2196F3; text-decoration: none; }
         a:hover { text-decoration: underline; }
         .category { background: #e3f2fd; padding: 10px 15px; margin: 20px 0 10px 0; border-radius: 4px; font-weight: bold; color: #1976d2; }
         .category-net { background: #f3e5f5; color: #7b1fa2; }
         .category-tyc { background: #fff3e0; color: #e65100; }
-        .category-city { background: #e8f5e9; color: #2e7d32; }
         .footer { margin-top: 30px; color: #999; font-size: 12px; text-align: right; }
         .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
         .btn-proxy { display: inline-flex; align-items: center; gap: 6px; background: #1976d2; color: white !important; padding: 9px 18px; border-radius: 6px; font-size: 14px; font-weight: 500; text-decoration: none !important; white-space: nowrap; box-shadow: 0 2px 4px rgba(25,118,210,0.3); transition: background 0.2s; }
         .btn-proxy:hover { background: #1565c0; text-decoration: none !important; }
         .toolbar-tip { color: #888; font-size: 12px; }
-        .tyc-block { background: white; border-radius: 8px; padding: 16px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 8px; }
-        .tyc-link { text-align: center; margin-bottom: 12px; }
-        .tyc-link a { display: inline-block; background: #e65100; color: white; padding: 8px 20px; border-radius: 6px; font-size: 14px; text-decoration: none; }
-        .tyc-link a:hover { background: #bf360c; }
-        .acc-card { border: 1.5px solid #ffe0b2; border-radius: 6px; padding: 10px 14px; margin-bottom: 8px; }
-        .acc-card:hover { border-color: #ff9800; }
-        .acc-title { font-weight: bold; color: #e65100; font-size: 13px; margin-bottom: 8px; }
-        .acc-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; font-size: 13px; }
-        .acc-key { color: #888; min-width: 36px; }
-        .acc-val { font-family: monospace; font-size: 13px; background: #f5f5f5; padding: 2px 8px; border-radius: 4px; flex: 1; letter-spacing: 1px; }
-        .copy-btn { background: #e0e0e0; color: #333; border: none; padding: 3px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; white-space: nowrap; }
-        .copy-btn:hover { background: #bdbdbd; }
-        .open-btn { background: #1976d2; color: white; border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-        .open-btn:hover { background: #1565c0; }
+        
+        /* 天眼查区域 - 紧凑设计 */
+        .tyc-container { background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 8px; }
+        .tyc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .tyc-title { font-weight: bold; color: #e65100; font-size: 14px; }
+        .tyc-link-btn { display: inline-flex; align-items: center; gap: 4px; background: #e65100; color: white; padding: 6px 14px; border-radius: 4px; font-size: 13px; text-decoration: none; }
+        .tyc-link-btn:hover { background: #bf360c; text-decoration: none; }
+        .tyc-accounts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+        .tyc-acc { border: 1px solid #ffe0b2; border-radius: 6px; padding: 10px 12px; font-size: 13px; }
+        .tyc-acc:hover { border-color: #ff9800; }
+        .tyc-acc-label { font-weight: bold; color: #e65100; margin-bottom: 6px; font-size: 12px; }
+        .tyc-acc-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+        .tyc-acc-key { color: #888; min-width: 32px; font-size: 12px; }
+        .tyc-acc-val { font-family: monospace; font-size: 12px; background: #f5f5f5; padding: 2px 8px; border-radius: 3px; letter-spacing: 1px; }
+        .tyc-copy-btn { background: #e0e0e0; color: #333; border: none; padding: 2px 8px; border-radius: 3px; cursor: pointer; font-size: 11px; }
+        .tyc-copy-btn:hover { background: #bdbdbd; }
+        .tyc-open-btn { background: #1976d2; color: white; border: none; padding: 3px 10px; border-radius: 3px; cursor: pointer; font-size: 11px; }
+        .tyc-open-btn:hover { background: #1565c0; }
     </style>
 </head>
 <body>
-    <h1>📋 在线表索引</h1>
-    <div class="info">记录常用的在线表格链接，方便快速查找<br>更新频率：每季度</div>
+    <h1>📋 中天粤工作台</h1>
+    <div class="info">
+        记录常用的在线表格链接，方便快速查找<br>
+        更新频率：每季度
+    </div>
+
     <div class="toolbar">
         <a href="ms-settings:network-proxy" class="btn-proxy">🌐 打开代理设置</a>
-        <span class="toolbar-tip">点击后在弹窗中选择「打开」即可跳转到 Windows 代理设置</span>
+        <span class="toolbar-tip">需手动设置，详见下方说明 ↓</span>
     </div>
+    <div style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px;">
+        <div style="font-weight: bold; color: #856404; margin-bottom: 8px;">⚠️ 代理设置说明（需手动配置）</div>
+        <div style="display: flex; align-items: center; gap: 8px; margin: 6px 0;">
+            <span style="color: #856404; font-weight: bold; min-width: 70px;">代理地址：</span>
+            <code style="background: #f8f9fa; padding: 2px 8px; border-radius: 3px; flex: 1;">http://cmproxy.gmcc.net</code>
+            <button onclick="copy(this, 'http://cmproxy.gmcc.net')" style="background: #ffc107; border: none; padding: 3px 10px; border-radius: 3px; cursor: pointer; font-size: 11px;">复制</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; margin: 6px 0;">
+            <span style="color: #856404; font-weight: bold; min-width: 70px;">端　口：</span>
+            <code style="background: #f8f9fa; padding: 2px 8px; border-radius: 3px; flex: 1;">8081</code>
+            <button onclick="copy(this, '8081')" style="background: #ffc107; border: none; padding: 3px 10px; border-radius: 3px; cursor: pointer; font-size: 11px;">复制</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; margin: 6px 0; align-items: flex-start;">
+            <span style="color: #856404; font-weight: bold; min-width: 70px;">代理服务器：</span>
+            <code style="background: #f8f9fa; padding: 2px 8px; border-radius: 3px; flex: 1; word-break: break-all;">*.gmcc.net;*.gd.cmcc;sgs020lu;emis.*;*.gd.chinamobile.com;*.hq.cmcc;10.*;*cmicp*;*ims</code>
+            <button onclick="copy(this, '*.gmcc.net;*.gd.cmcc;sgs020lu;emis.*;*.gd.chinamobile.com;*.hq.cmcc;10.*;*cmicp*;*ims')" style="background: #ffc107; border: none; padding: 3px 10px; border-radius: 3px; cursor: pointer; font-size: 11px;">复制</button>
+        </div>
+    </div>
+
     <div class="category">检查/审计类</div>
     <table>
-        <thead><tr><th>表名</th><th>链接</th><th>用途说明</th><th>最后更新</th></tr></thead>
+        <thead>
+            <tr><th>表名</th><th>链接</th><th>用途说明</th><th>最后更新</th></tr>
+        </thead>
         <tbody>
-            <tr><td>26年1季度项目线下检查表</td><td><a href="https://www.kdocs.cn/l/cc9Fi2Ri3xTN" target="_blank">点击打开 →</a></td><td>项目线下检查</td><td>2026-04-17</td></tr>
-            <tr><td>2025年-2026年政企业务检查（工作共享）</td><td><a href="https://www.kdocs.cn/join/ghqgjo2" target="_blank">点击打开 →</a></td><td>政企业务检查工作共享文档</td><td>2026-04-20</td></tr>
+            <tr>
+                <td>26年1季度项目线下检查表</td>
+                <td><a href="https://www.kdocs.cn/l/cc9Fi2Ri3xTN" target="_blank">点击打开 →</a></td>
+                <td>项目线下检查</td>
+                <td>2026-04-17</td>
+            </tr>
+            <tr>
+                <td>2025年-2026年政企业务检查（工作共享）</td>
+                <td><a href="https://www.kdocs.cn/join/ghqgjo2" target="_blank">点击打开 →</a></td>
+                <td>政企业务检查工作共享文档</td>
+                <td>2026-04-20</td>
+            </tr>
         </tbody>
     </table>
-    <div class="category category-city">🏙️ 26年第一季度检查资料</div>
+
+<div class="category">📁 26年第一季度检查资料</div>
+    <div style="background: #e8f4f8; border: 1px solid #17a2b8; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px; font-size: 13px;">
+        <div style="color: #17a2b8; font-weight: bold; margin-bottom: 8px;">💡 说明</div>
+        <div style="color: #555; line-height: 1.6;">如果已经点过云盘链接，超过7天再点过期时，可以去这里找自己加入的云盘：</div>
+        <a href="https://yun.139.com/w/#/groupfile/1279874463139963292" target="_blank" style="color: #007bff;">中国移动云盘 →</a>
+        <div style="margin-top: 10px;">
+            <img src="cloud-tips.png" alt="云盘入口指引" style="max-width: 280px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer;" onclick="this.style.maxWidth=(this.style.maxWidth=='600px'?'280px':'600px')">
+            <div style="color: #888; font-size: 11px; margin-top: 4px;">点击图片可放大/缩小</div>
+        </div>
     <table>
-        <thead><tr><th>地市</th><th>链接</th><th>用途说明</th><th>最后更新</th></tr></thead>
+        <thead>
+            <tr><th>地市</th><th>链接</th><th>用途说明</th><th>最后更新</th></tr>
+        </thead>
         <tbody>
-            <tr><td>梅州</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=0897102623029277907" target="_blank">点击打开 →</a></td><td>一季度专项检查</td><td>2026-04-28</td></tr>
-            <tr><td>汕尾</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=8986296882265652592" target="_blank">点击打开 →</a></td><td>第一季度政企集中检查</td><td>2026-04-28</td></tr>
-            <tr><td>江门</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=1485645599879554831" target="_blank">点击打开 →</a></td><td>一季度检查</td><td>2026-04-28</td></tr>
-            <tr><td>河源</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=3653291758701095304" target="_blank">点击打开 →</a></td><td>一季度专项检查</td><td>2026-04-28</td></tr>
-            <tr><td>中山</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=4460709960591439656" target="_blank">点击打开 →</a></td><td>一季度成本类检查</td><td>2026-04-28</td></tr>
-            <tr><td>揭阳</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=6844656338207709877" target="_blank">点击打开 →</a></td><td>一季度项目检查</td><td>2026-04-28</td></tr>
-            <tr><td>广州</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=5456712011799463238" target="_blank">点击打开 →</a></td><td>一季度省检项目检查</td><td>2026-04-28</td></tr>
-            <tr><td>深圳</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=1652910600020400044" target="_blank">点击打开 →</a></td><td>一季度项目检查</td><td>2026-04-28</td></tr>
-            <tr><td>湛江</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=3648992534378134563" target="_blank">点击打开 →</a></td><td>一季度省集客检查</td><td>2026-04-28</td></tr>
-            <tr><td>云浮</td><td><a href="https://yun.139.com/shareweb/#/w/i/2uETHxe9ESLrt" target="_blank">点击打开 →</a></td><td>一季度检查（提取码：sqtv）</td><td>2026-04-28</td></tr>
+            <tr>
+                <td>梅州</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=0897102623029277907" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>汕尾</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=8986296882265652592" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>江门</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=1485645599879554831" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>河源</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=3653291758701095304" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>中山</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=4460709960591439656" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>揭阳</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=6844656338207709877" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>广州</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=5456712011799463238" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>深圳</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=1652910600020400044" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>湛江</td>
+                <td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=3648992534378134563" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料</td>
+                <td>2026-04-28</td>
+            </tr>
+            <tr>
+                <td>云浮</td>
+                <td><a href="https://yun.139.com/shareweb/#/w/i/2uETHxe9ESLrt" target="_blank">点击打开 →</a></td>
+                <td>【省检】第一季度项目检查资料（提取码：sqtv）</td>
+                <td>2026-04-28</td>
+            </tr>
         </tbody>
     </table>
+
     <div class="category category-net">🌐 内网系统</div>
     <table>
-        <thead><tr><th>系统名称</th><th>链接</th><th>用途说明</th></tr></thead>
+        <thead>
+            <tr><th>系统名称</th><th>链接</th><th>用途说明</th></tr>
+        </thead>
         <tbody>
-            <tr><td>ICT系统登录</td><td><a href="http://eip.gmcc.net/poa/portalwork/workbench.do" target="_blank">点击打开 →</a></td><td>EIP工作台</td></tr>
-            <tr><td>CT延伸系统</td><td><a href="http://dict.gmcc.net:30723/dictWeb/portalLogin" target="_blank">点击打开 →</a></td><td>字典管理系统</td></tr>
-            <tr><td>4A平台（pass BRM）</td><td><a href="https://ng4a.gmcc.net/iga/index.html" target="_blank">点击打开 →</a></td><td>身份认证与访问管理</td></tr>
-            <tr><td>风控平台</td><td><a href="http://10.108.157.28:31268/portal-react/#/iframe/RISK_fkmxpzgl" target="_blank">点击打开 →</a></td><td>风控管理平台</td></tr>
+            <tr>
+                <td>ICT系统登录</td>
+                <td><a href="http://eip.gmcc.net/poa/portalwork/workbench.do" target="_blank">点击打开 →</a></td>
+                <td>EIP工作台</td>
+            </tr>
+            <tr>
+                <td>CT延伸系统</td>
+                <td><a href="http://dict.gmcc.net:30723/dictWeb/portalLogin" target="_blank">点击打开 →</a></td>
+                <td>字典管理系统</td>
+            </tr>
+            <tr>
+                <td>4A平台（pass BRM）</td>
+                <td><a href="https://ng4a.gmcc.net/iga/index.html" target="_blank">点击打开 →</a></td>
+                <td>身份认证与访问管理</td>
+            </tr>
+            <tr>
+                <td>风控平台</td>
+                <td><a href="http://10.108.157.28:31268/portal-react/#/iframe/RISK_fkmxpzgl" target="_blank">点击打开 →</a></td>
+                <td>风控管理平台</td>
+            </tr>
         </tbody>
     </table>
+
     <div class="category category-tyc">🔍 天眼查快捷登录</div>
-    <div class="tyc-block">
-        <div class="tyc-link"><a href="https://www.tianyancha.com/" target="_blank">打开天眼查 →</a></div>
-        <div class="acc-card">
-            <div class="acc-title">账号 1</div>
-            <div class="acc-row"><span class="acc-key">账号</span><span class="acc-val">13926450209</span><button class="copy-btn" onclick="copy(this, '13926450209')">复制</button></div>
-            <div class="acc-row"><span class="acc-key">密码</span><span class="acc-val">Gmcc@2024</span><button class="copy-btn" onclick="copy(this, 'Gmcc@2024')">复制</button><button class="open-btn" onclick="window.open('https://www.tianyancha.com/','_blank')">🚀 打开</button></div>
+    <div class="tyc-container">
+        <div class="tyc-header">
+            <span class="tyc-title">企业工商信息查询</span>
+            <a href="https://www.tianyancha.com/" target="_blank" class="tyc-link-btn">🌐 打开天眼查</a>
         </div>
-        <div class="acc-card">
-            <div class="acc-title">账号 2</div>
-            <div class="acc-row"><span class="acc-key">账号</span><span class="acc-val">13160874541</span><button class="copy-btn" onclick="copy(this, '13160874541')">复制</button></div>
-            <div class="acc-row"><span class="acc-key">密码</span><span class="acc-val">zx38457568</span><button class="copy-btn" onclick="copy(this, 'zx38457568')">复制</button><button class="open-btn" onclick="window.open('https://www.tianyancha.com/','_blank')">🚀 打开</button></div>
+        <div class="tyc-accounts">
+            <div class="tyc-acc">
+                <div class="tyc-acc-label">📌 账号 1</div>
+                <div class="tyc-acc-row">
+                    <span class="tyc-acc-key">账号</span>
+                    <span class="tyc-acc-val">13926450209</span>
+                    <button class="tyc-copy-btn" onclick="copy(this, '13926450209')">复制</button>
+                </div>
+                <div class="tyc-acc-row">
+                    <span class="tyc-acc-key">密码</span>
+                    <span class="tyc-acc-val">Gmcc@2024</span>
+                    <button class="tyc-copy-btn" onclick="copy(this, 'Gmcc@2024')">复制</button>
+                    <button class="tyc-open-btn" onclick="window.open('https://www.tianyancha.com/','_blank')">打开</button>
+                </div>
+            </div>
+            <div class="tyc-acc">
+                <div class="tyc-acc-label">📌 账号 2</div>
+                <div class="tyc-acc-row">
+                    <span class="tyc-acc-key">账号</span>
+                    <span class="tyc-acc-val">13160874541</span>
+                    <button class="tyc-copy-btn" onclick="copy(this, '13160874541')">复制</button>
+                </div>
+                <div class="tyc-acc-row">
+                    <span class="tyc-acc-key">密码</span>
+                    <span class="tyc-acc-val">zx38457568</span>
+                    <button class="tyc-copy-btn" onclick="copy(this, 'zx38457568')">复制</button>
+                    <button class="tyc-open-btn" onclick="window.open('https://www.tianyancha.com/','_blank')">打开</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="footer">最后整理时间：2026-04-28</div>
-    <script>function copy(btn,text){navigator.clipboard.writeText(text).then(function(){var orig=btn.innerText;btn.innerText="✓ 已复制";setTimeout(function(){btn.innerText=orig;},1500)})}</script>
+
+    <div class="footer">
+        最后整理时间：2026-04-28
+    </div>
+
+    <script>
+        function copy(btn, text) {
+            navigator.clipboard.writeText(text).then(function() {
+                var orig = btn.innerText;
+                btn.innerText = '✓';
+                setTimeout(function() { btn.innerText = orig; }, 1200);
+            });
+        }
+        function copyProxy() {
+            var text = '代理地址：http://cmproxy.gmcc.net\n端口：8081\n代理服务器：*.gmcc.net;*.gd.cmcc;sgs020lu;emis.*;*.gd.chinamobile.com;*.hq.cmcc;10.*;*cmicp*;*ims';
+            navigator.clipboard.writeText(text).then(function() {
+                alert('已复制代理配置信息！');
+            });
+        }
+    </script>
 </body>
 </html>
