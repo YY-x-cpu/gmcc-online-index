@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线表索引</title>
+    <title>中天粤-移动驾驶舱</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
-        h1 { color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
+        .header { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #4CAF50; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; letter-spacing: 2px; box-shadow: 0 2px 8px rgba(196,30,58,0.3); }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-main { font-size: 22px; font-weight: bold; color: #c41e3a; letter-spacing: 3px; }
+        .logo-sub { font-size: 12px; color: #888; letter-spacing: 2px; margin-top: 2px; }
+        h1 { color: #333; margin: 0; font-size: 24px; border-bottom: none; padding-bottom: 0; }
         .info { color: #666; font-size: 14px; margin-bottom: 20px; }
         table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
         th { background: #4CAF50; color: white; padding: 12px; text-align: left; }
@@ -39,48 +45,139 @@
     </style>
 </head>
 <body>
-    <h1>📋 在线表索引</h1>
-    <div class="info">记录常用的在线表格链接，方便快速查找<br>更新频率：每季度</div>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">中</div>
+            <div class="logo-text">
+                <span class="logo-main">中天粤会计师事务所</span>
+                <span class="logo-sub">ZHONGTIANYUE CERTIFIED PUBLIC ACCOUNTANTS</span>
+            </div>
+        </div>
+    </div>
+    <h1>📋 移动驾驶舱</h1>
+    <div class="info">
+        记录常用的在线表格链接，方便快速查找<br>
+        更新频率：每季度
+    </div>
+
     <div class="toolbar">
         <a href="ms-settings:network-proxy" class="btn-proxy">🌐 打开代理设置</a>
         <span class="toolbar-tip">点击后在弹窗中选择「打开」即可跳转到 Windows 代理设置</span>
     </div>
+
     <div class="category">检查/审计类</div>
     <table>
-        <thead><tr><th>表名</th><th>链接</th><th>用途说明</th><th>最后更新</th></tr></thead>
+        <thead>
+            <tr><th>表名</th><th>链接</th><th>用途说明</th><th>最后更新</th></tr>
+        </thead>
         <tbody>
-            <tr><td>2026年业务检查第一批数据汇总表（韶关）</td><td><a href="https://www.kdocs.cn/l/cdKy3Sgllhup" target="_blank">点击打开 →</a></td><td>韶关公司迎检接口名单和抽样清单</td><td>2026-04-09</td></tr>
-            <tr><td>26年1季度项目线下检查表</td><td><a href="https://www.kdocs.cn/l/cc9Fi2Ri3xTN" target="_blank">点击打开 →</a></td><td>项目线下检查</td><td>2026-04-17</td></tr>
-            <tr><td>企宽报告数据</td><td><a href="https://www.kdocs.cn/l/cpUfTxGXhEoU" target="_blank">点击打开 →</a></td><td>企宽报告</td><td>2026-04-10</td></tr>
-            <tr><td>2025年-2026年政企业务检查（工作共享）</td><td><a href="https://www.kdocs.cn/join/ghqgjo2" target="_blank">点击打开 →</a></td><td>政企业务检查工作共享文档</td><td>2026-04-20</td></tr>
-            <tr><td>26年一季度成本类检查项目资料提交（中山）</td><td><a href="http://yun.139.com/m/#/invitation?type=1&msgId=4460709960591439656" target="_blank">点击打开 →</a></td><td>中山地市成本类检查项目资料提交</td><td>2026-04-28</td></tr>
+            <tr>
+                <td>2026年业务检查第一批数据汇总表（韶关）</td>
+                <td><a href="https://www.kdocs.cn/l/cdKy3Sgllhup" target="_blank">点击打开 →</a></td>
+                <td>韶关公司迎检接口名单和抽样清单</td>
+                <td>2026-04-09</td>
+            </tr>
+            <tr>
+                <td>26年1季度项目线下检查表</td>
+                <td><a href="https://www.kdocs.cn/l/cc9Fi2Ri3xTN" target="_blank">点击打开 →</a></td>
+                <td>项目线下检查</td>
+                <td>2026-04-17</td>
+            </tr>
+            <tr>
+                <td>企宽报告数据</td>
+                <td><a href="https://www.kdocs.cn/l/cpUfTxGXhEoU" target="_blank">点击打开 →</a></td>
+                <td>企宽报告</td>
+                <td>2026-04-10</td>
+            </tr>
+            <tr>
+                <td>2025年-2026年政企业务检查（工作共享）</td>
+                <td><a href="https://www.kdocs.cn/join/ghqgjo2" target="_blank">点击打开 →</a></td>
+                <td>政企业务检查工作共享文档</td>
+                <td>2026-04-20</td>
+            </tr>
         </tbody>
     </table>
+
     <div class="category category-net">🌐 内网系统</div>
     <table>
-        <thead><tr><th>系统名称</th><th>链接</th><th>用途说明</th></tr></thead>
+        <thead>
+            <tr><th>系统名称</th><th>链接</th><th>用途说明</th></tr>
+        </thead>
         <tbody>
-            <tr><td>ICT系统登录</td><td><a href="http://eip.gmcc.net/poa/portalwork/workbench.do" target="_blank">点击打开 →</a></td><td>EIP工作台</td></tr>
-            <tr><td>CT延伸系统</td><td><a href="http://dict.gmcc.net:30723/dictWeb/portalLogin" target="_blank">点击打开 →</a></td><td>字典管理系统</td></tr>
-            <tr><td>4A平台（pass BRM）</td><td><a href="https://ng4a.gmcc.net/iga/index.html" target="_blank">点击打开 →</a></td><td>身份认证与访问管理</td></tr>
-            <tr><td>风控平台</td><td><a href="http://10.108.157.28:31268/portal-react/#/iframe/RISK_fkmxpzgl" target="_blank">点击打开 →</a></td><td>风控管理平台</td></tr>
+            <tr>
+                <td>ICT系统登录</td>
+                <td><a href="http://eip.gmcc.net/poa/portalwork/workbench.do" target="_blank">点击打开 →</a></td>
+                <td>EIP工作台</td>
+            </tr>
+            <tr>
+                <td>CT延伸系统</td>
+                <td><a href="http://dict.gmcc.net:30723/dictWeb/portalLogin" target="_blank">点击打开 →</a></td>
+                <td>字典管理系统</td>
+            </tr>
+            <tr>
+                <td>4A平台（pass BRM）</td>
+                <td><a href="https://ng4a.gmcc.net/iga/index.html" target="_blank">点击打开 →</a></td>
+                <td>身份认证与访问管理</td>
+            </tr>
+            <tr>
+                <td>风控平台</td>
+                <td><a href="http://10.108.157.28:31268/portal-react/#/iframe/RISK_fkmxpzgl" target="_blank">点击打开 →</a></td>
+                <td>风控管理平台</td>
+            </tr>
         </tbody>
     </table>
+
     <div class="category category-tyc">🔍 天眼查快捷登录</div>
     <div class="tyc-block">
-        <div class="tyc-link"><a href="https://www.tianyancha.com/cloud-other-information/login" target="_blank">打开天眼查登录页 →</a></div>
+        <div class="tyc-link">
+            <a href="https://www.tianyancha.com/cloud-other-information/login" target="_blank">打开天眼查登录页 →</a>
+        </div>
+
+        <!-- 账号1 -->
         <div class="acc-card">
             <div class="acc-title">账号 1</div>
-            <div class="acc-row"><span class="acc-key">账号</span><span class="acc-val">13926450209</span><button class="copy-btn" onclick="copy(this, '13926450209')">复制账号</button></div>
-            <div class="acc-row"><span class="acc-key">密码</span><span class="acc-val">******</span><button class="copy-btn" onclick="copy(this, 'Gmcc@2024')">复制密码</button><button class="open-btn" onclick="window.open('https://www.tianyancha.com/cloud-other-information/login','_blank')">🚀 一键打开</button></div>
+            <div class="acc-row">
+                <span class="acc-key">账号</span>
+                <span class="acc-val">13926450209</span>
+                <button class="copy-btn" onclick="copy(this, '13926450209')">复制账号</button>
+            </div>
+            <div class="acc-row">
+                <span class="acc-key">密码</span>
+                <span class="acc-val">******</span>
+                <button class="copy-btn" onclick="copy(this, 'Gmcc@2024')">复制密码</button>
+                <button class="open-btn" onclick="window.open('https://www.tianyancha.com/cloud-other-information/login','_blank')">🚀 一键打开</button>
+            </div>
         </div>
+
+        <!-- 账号2 -->
         <div class="acc-card">
             <div class="acc-title">账号 2</div>
-            <div class="acc-row"><span class="acc-key">账号</span><span class="acc-val">13160874541</span><button class="copy-btn" onclick="copy(this, '13160874541')">复制账号</button></div>
-            <div class="acc-row"><span class="acc-key">密码</span><span class="acc-val">******</span><button class="copy-btn" onclick="copy(this, 'zx38457568')">复制密码</button><button class="open-btn" onclick="window.open('https://www.tianyancha.com/cloud-other-information/login','_blank')">🚀 一键打开</button></div>
+            <div class="acc-row">
+                <span class="acc-key">账号</span>
+                <span class="acc-val">13160874541</span>
+                <button class="copy-btn" onclick="copy(this, '13160874541')">复制账号</button>
+            </div>
+            <div class="acc-row">
+                <span class="acc-key">密码</span>
+                <span class="acc-val">******</span>
+                <button class="copy-btn" onclick="copy(this, 'zx38457568')">复制密码</button>
+                <button class="open-btn" onclick="window.open('https://www.tianyancha.com/cloud-other-information/login','_blank')">🚀 一键打开</button>
+            </div>
         </div>
     </div>
-    <div class="footer">最后整理时间：2026-04-28</div>
-    <script>function copy(btn,text){navigator.clipboard.writeText(text).then(function(){var orig=btn.innerText;btn.innerText="✓ 已复制";setTimeout(function(){btn.innerText=orig;},1500)})}</script>
+
+    <div class="footer">
+        最后整理时间：2026-04-21
+    </div>
+
+    <script>
+        function copy(btn, text) {
+            navigator.clipboard.writeText(text).then(function() {
+                var orig = btn.innerText;
+                btn.innerText = '✓ 已复制';
+                setTimeout(function() { btn.innerText = orig; }, 1500);
+            });
+        }
+    </script>
 </body>
 </html>
